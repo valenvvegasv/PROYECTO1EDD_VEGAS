@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -11,20 +10,32 @@ import javax.swing.JFileChooser;
  */
 
 /**
- *
+ * Esta clase maneja operaciones de archivos relacionadas con la carga de grafos, particularmente
+ * cargar grafos desde archivos JSON. Proporciona métodos para seleccionar un archivo. 
+ * a través de un selector de archivos y analizando el contenido para construir un grafo.
+ * 
  * @author valen
  */
 public class Archivo {
+    /** Nombre del grafo (si aplica). */
+    private String nombre;
+    
+    /**
+     * Carga un grafo desde un archivo JSON seleccionado por el usuario a través de un selector de archivos.
+     *
+     * @param graph el objeto Graph en el que cargar datos
+     * @return el objeto Graph cargado
+     */
     public Graph cargarGrafo(Graph graph){
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Seleccionar archivo JSON");
         int userSelection = fileChooser.showOpenDialog(null);
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             File fileToOpen = fileChooser.getSelectedFile();
-            System.out.println(fileToOpen.getName().toLowerCase().endsWith(".json"));
+            //System.out.println(fileToOpen.getName().toLowerCase().endsWith(".json"));
             if (!fileToOpen.getName().toLowerCase().endsWith(".json")){
                 System.out.println(fileToOpen.getName().toLowerCase());
-                return null;
+                return graph;
             }else{
                 try {
                     loadGraphFromJson(fileToOpen, graph);
@@ -36,7 +47,16 @@ public class Archivo {
         }
         return graph;
     }
-    private static Graph loadGraphFromJson(File file, Graph graph) throws IOException {
+    
+    /**
+     * Lee el contenido de un archivo JSON y carga los datos del gráfico.
+     *
+     * @param file el archivo JSON para leer
+     * @param graph el objeto Graph para completar con datos
+     * @return el objeto Graph actualizado
+     * @throws IOException si ocurre un error durante la lectura del archivo
+     */
+    public Graph loadGraphFromJson(File file, Graph graph) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
         StringBuilder jsonBuilder = new StringBuilder();
         String line;
@@ -53,7 +73,14 @@ public class Archivo {
         
     }
     
-    private static Graph parseJson(String json, Graph graph) {
+    /**
+     * Analiza la cadena JSON y completa la estructura del grafo.
+     *
+     * @param json la cadena JSON que representa los datos del grafo
+     * @param graph el objeto Graph a completar
+     * @return el objeto Graph actualizado
+     */
+    private Graph parseJson(String json, Graph graph) {
         // Eliminar caracteres innecesarios
         json = json.replace("{", "\n").replace("}", "\n")
                .replace("[", "\n").replace("]", "\n]");
@@ -62,15 +89,18 @@ public class Archivo {
         // Dividir el JSON en líneas
         String[] lines = json.split("\n");
         
-        
         String currentLine = null;
         GraphNode lastNode = null; // Variable para mantener la última parada procesada
         boolean isInLineArray = false;
         
-
+        int i=0;
         for (String line : lines) {
+            i++;
             line = line.trim();
             //System.out.println(line);
+            if(i==2){
+                nombre = line;
+            }
             if (line.isEmpty()) {
                 continue;
             }
@@ -78,6 +108,7 @@ public class Archivo {
                 isInLineArray = true;
                 continue;
             }
+            
             // Si encontramos un cierre de arreglo
             if (line.endsWith("]")) {
                 isInLineArray = false; // Salir del arreglo
@@ -88,20 +119,20 @@ public class Archivo {
                 //System.out.println(line);
                 if(line.contains(":")){
                     // Procesar conexión peatonal
-                    System.out.println("stoooooop1 "+ line);
+                    //System.out.println("stoooooop1 "+ line);
                     String[] parts = line.split(":");
                     String stop1 = parts[0].replace("\"", "").trim();
                     if(stop1.length()>14){
                         stop1 = stop1.substring(0, Math.min(stop1.length(), 14));
                     }
                     
-                    System.out.println("stop1 "+ stop1);
+                    //System.out.println("stop1 "+ stop1);
                     String stop2 = parts[1].replace("\"", "").trim();
                     if(stop2.length()>14){
                         stop2 = stop2.substring(0, Math.min(stop2.length(), 14));
                     }
                     //stop2 = stop2.substring(0, Math.min(stop1.length(), 10));
-                    System.out.println("stop2 "+ stop2);
+                    //System.out.println("stop2 "+ stop2);
                     
                     // Asegurarse de que ambos nodos existan
                     GraphNode node1 = graph.findNodeByName(stop1);
@@ -147,6 +178,14 @@ public class Archivo {
             }
         } 
         return graph;
+    }
+
+    /**
+     * Retorna el nombre del grafo
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
     }
     
 }

@@ -7,16 +7,32 @@ import javax.swing.JOptionPane;
  */
 
 /**
- *
+ * Clase que representa la primera ventana de la aplicación.
+ * Esta ventana permite al usuario ingresar un archivo JSON con
+ * la red de metro y establecer el valor de radio (t).
+ * 
  * @author valen
  */
 public class Ventana1 extends javax.swing.JFrame {
-
+    
+    /**
+     * El grafo que representa la red de metro.
+     */
+    public Graph graph = new Graph();
+    
+    /**
+     * El radio (t) que se utilizará para cálculos posteriores.
+     */
+    int radio;
+    
+     /**
+     * El nombre del archivo JSON cargado.
+     */
+    String nombre;
+    
     /**
      * Creates new form Ventana1
      */
-    public Graph graph = new Graph();
-    int radio;
     public Ventana1() {
         initComponents();
     }
@@ -71,33 +87,37 @@ public class Ventana1 extends javax.swing.JFrame {
         FONDO.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
 
         ingresarJSON.setBackground(new java.awt.Color(255, 204, 255));
-        ingresarJSON.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 14)); // NOI18N
+        ingresarJSON.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         ingresarJSON.setText("INGRESAR ARCHIVO CON RED DE METRO");
         ingresarJSON.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ingresarJSONActionPerformed(evt);
             }
         });
-        FONDO.add(ingresarJSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 280, 50));
+        FONDO.add(ingresarJSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 320, 50));
 
         jLabel3.setText("IMPORTANTE: el archivo debe ser de tipo .json");
         FONDO.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 250, -1));
 
+        valorT.setBackground(new java.awt.Color(255, 206, 255));
+        valorT.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         valorT.setText("INGRESAR VALOR DE T");
         valorT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 valorTActionPerformed(evt);
             }
         });
-        FONDO.add(valorT, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, -1));
+        FONDO.add(valorT, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 190, 40));
 
+        siguienteVentana.setBackground(new java.awt.Color(255, 206, 255));
+        siguienteVentana.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         siguienteVentana.setText("SIGUIENTE");
         siguienteVentana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 siguienteVentanaActionPerformed(evt);
             }
         });
-        FONDO.add(siguienteVentana, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, -1, -1));
+        FONDO.add(siguienteVentana, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, -1, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,16 +132,29 @@ public class Ventana1 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Maneja el evento de acción para el botón de ingreso de archivo JSON.
+     * Carga el grafo desde el archivo seleccionado y actualiza el nombre.
+     *
+     * @param evt el evento de acción que se dispara al hacer clic en el botón
+     */
     private void ingresarJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarJSONActionPerformed
         // TODO add your handling code here:
         Archivo archivo = new Archivo();
         graph = archivo.cargarGrafo(graph);
-        if(graph == null){
+        nombre = archivo.getNombre();
+        System.out.println("Mi nombre es: "+nombre);
+        if(graph.getNodeCount() == 0){
             JOptionPane.showMessageDialog(null, "Por favor, selecciona un archivo de tipo .json", "Error de archivo", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_ingresarJSONActionPerformed
-
+    /**
+     * Maneja el evento de acción para el botón de ingreso del valor de t.
+     * Solicita al usuario un valor numérico para el radio (t).
+     *
+     * @param evt el evento de acción que se dispara al hacer clic en el botón
+     */
     private void valorTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorTActionPerformed
         // TODO add your handling code here:
         String respuesta = JOptionPane.showInputDialog(this, "Ingresa el valor del radio (t)");
@@ -131,24 +164,29 @@ public class Ventana1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Por favor, ingresa un numero valido", "Error de valor", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_valorTActionPerformed
-
+    
+    /**
+     * Maneja el evento de acción para el botón de siguiente ventana.
+     * Valida los datos ingresados y, si son válidos, abre la siguiente ventana.
+     *
+     * @param evt el evento de acción que se dispara al hacer clic en el botón
+     */
     private void siguienteVentanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteVentanaActionPerformed
         // TODO add your handling code here:
         if(radio == 0 || graph == null){
             JOptionPane.showMessageDialog(null, "Debes ingresar un archivo y fijar un valor de t antes de continuar", "Error datos incompletos", JOptionPane.ERROR_MESSAGE);
-        }
-        /*
-        else if{
-            Ventana2 ventana2 = new Ventana2();
+        }else{
+            Ventana2 ventana2 = new Ventana2(graph, radio, nombre);
             ventana2.setVisible(true);
-            //tengo que pasarle el valor del grafo y del radio a la siguiente ventana
+            dispose();
         }
-        */
     }//GEN-LAST:event_siguienteVentanaActionPerformed
 
     /**
-     * @param args the command line arguments
-     */
+    * Este es el método principal que inicia la aplicación.
+    *
+    * @param args los argumentos de línea de comandos proporcionados al ejecutar la aplicación.
+    */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
