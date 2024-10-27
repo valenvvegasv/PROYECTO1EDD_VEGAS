@@ -45,7 +45,7 @@ public class LinkedList {
     public void imprimirLista(){
         Node current = head;
         while(current!=null){
-            System.out.print(current.node.name + " ");
+            //System.out.print(current.node.name + " ");
             current = current.next;
         }
     }
@@ -127,7 +127,7 @@ public class LinkedList {
         if (current != null) {
             previous.next = current.next; // Desvincular el nodo actual
         } else {
-            System.out.println("No se encontró el nodo: " + name);
+            //System.out.println("No se encontró el nodo: " + name);
         }
 
         return head; // Retorna la cabeza actualizada
@@ -150,7 +150,7 @@ public class LinkedList {
         if (head != null) {
             head = head.next;  // Desplazar la cabeza al siguiente nodo
         } else {
-            System.out.println("La lista ya está vacía.");
+            //System.out.println("La lista ya está vacía.");
         }
     }
     

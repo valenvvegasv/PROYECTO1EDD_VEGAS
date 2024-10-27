@@ -34,7 +34,7 @@ public class Archivo {
             File fileToOpen = fileChooser.getSelectedFile();
             //System.out.println(fileToOpen.getName().toLowerCase().endsWith(".json"));
             if (!fileToOpen.getName().toLowerCase().endsWith(".json")){
-                System.out.println(fileToOpen.getName().toLowerCase());
+                //System.out.println(fileToOpen.getName().toLowerCase());
                 return graph;
             }else{
                 try {
@@ -122,15 +122,11 @@ public class Archivo {
                     //System.out.println("stoooooop1 "+ line);
                     String[] parts = line.split(":");
                     String stop1 = parts[0].replace("\"", "").trim();
-                    if(stop1.length()>14){
-                        stop1 = stop1.substring(0, Math.min(stop1.length(), 14));
-                    }
+                    
                     
                     //System.out.println("stop1 "+ stop1);
                     String stop2 = parts[1].replace("\"", "").trim();
-                    if(stop2.length()>14){
-                        stop2 = stop2.substring(0, Math.min(stop2.length(), 14));
-                    }
+                    
                     //stop2 = stop2.substring(0, Math.min(stop1.length(), 10));
                     //System.out.println("stop2 "+ stop2);
                     
@@ -157,9 +153,7 @@ public class Archivo {
                     lastNode = node1;
                 }else if(line.startsWith("\"")){
                     String stopName = line.replace("\"", "").trim();
-                    if(stopName.length()>14){
-                        stopName = stopName.substring(0, Math.min(stopName.length(), 14));
-                    }
+                    
                     
                     // Agregar nodo para la parada
                     GraphNode node = graph.findNodeByName(stopName);

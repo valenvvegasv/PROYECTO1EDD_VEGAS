@@ -144,7 +144,7 @@ public class Ventana1 extends javax.swing.JFrame {
         Archivo archivo = new Archivo();
         graph = archivo.cargarGrafo(graph);
         nombre = archivo.getNombre();
-        System.out.println("Mi nombre es: "+nombre);
+        //System.out.println("Mi nombre es: "+nombre);
         if(graph.getNodeCount() == 0){
             JOptionPane.showMessageDialog(null, "Por favor, selecciona un archivo de tipo .json", "Error de archivo", JOptionPane.ERROR_MESSAGE);
         }

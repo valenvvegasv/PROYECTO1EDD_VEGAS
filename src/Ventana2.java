@@ -95,7 +95,14 @@ public class Ventana2 extends javax.swing.JFrame {
         cargarNueva = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 255));
 
         background.setBackground(new java.awt.Color(204, 204, 255));
@@ -182,19 +189,73 @@ public class Ventana2 extends javax.swing.JFrame {
         background.add(cargarNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, -1, 50));
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 48)); // NOI18N
-        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 480, 60));
+        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 530, 60));
 
         jPanel1.setBackground(new java.awt.Color(11, 163, 153));
+
+        jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 20)); // NOI18N
+        jLabel3.setText("LEYENDA DE COLORES");
+
+        jLabel4.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 18)); // NOI18N
+        jLabel4.setText("Amarillo: parada con sucursal");
+
+        jLabel5.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 18)); // NOI18N
+        jLabel5.setText("Morado: paradas cubiertas");
+
+        jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 18)); // NOI18N
+        jLabel6.setText("por una sucursal");
+
+        jLabel7.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 18)); // NOI18N
+        jLabel7.setText("para futuras sucursales");
+
+        jLabel8.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 18)); // NOI18N
+        jLabel8.setText("Rojo: sugerencia de ubicaciones");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 180, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 440));
@@ -205,7 +266,7 @@ public class Ventana2 extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,14 +308,15 @@ public class Ventana2 extends javax.swing.JFrame {
         String respuesta = JOptionPane.showInputDialog(this, "Introduzca el nombre de la parada donde desea colocar la sucursual");
         GraphNode nuevo = findNodeByName(respuesta);
         if(nuevo == null){
-            JOptionPane.showMessageDialog(null, "Por favor, ingresa una parada valida", "Error de valor", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa una parada valida", "Error: parada no encontrada", JOptionPane.ERROR_MESSAGE);
         }else{
             visualizer.nodoSeleccionado(graph, respuesta);
             nodesWithStore.insertar(nuevo);
             graph.bfsConRadio2(nuevo, radio);
             accessibleNodes = graph.getAccessibleNodes();
-            visualizer.markAccessibleNodes(graph, accessibleNodes);
-            //visualizer.resetearColores(graph);
+            graph.recalcularAccessedNodes(radio, accessibleNodes);
+            //visualizer.markAccessibleNodes(graph, accessibleNodes);
+            visualizer.resetearColores(graph);
             //que se marque de amarillo los nodos con tienda
         }
         //accessibleNodes = graph.getAccessibleNodes();
@@ -270,13 +332,12 @@ public class Ventana2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         String respuesta = JOptionPane.showInputDialog(this, "Introduzca el nombre de la parada donde desea evaluar la cobertura");
         GraphNode nuevo = findNodeByName(respuesta);
-        if(nuevo == null){
-            JOptionPane.showMessageDialog(null, "Por favor, ingresa una parada valida", "Error de valor", JOptionPane.ERROR_MESSAGE);
+        if(nuevo == null||nuevo.hasStore == false){
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa una parada valida", "Error: parada no encontrada", JOptionPane.ERROR_MESSAGE);
         }else{
             visualizer.nodoSeleccionado(graph, respuesta);
-            graph.bfsConRadio2(nuevo, radio); //hacer una modificacion del metodo para que solo me devuelva los nodos accedidos por solo el nodo ingresado
-            accessibleNodes = graph.getAccessibleNodes(); 
-            visualizer.markAccessibleNodes(graph, accessibleNodes); //despues de unos segundos que vuelva a su color original
+            LinkedList reachableNodes = graph.bfsConRadio3(nuevo, radio); //hacer una modificacion del metodo para que solo me devuelva los nodos accedidos por solo el nodo ingresado
+            visualizer.markAccessibleNodes(graph, reachableNodes); //despues de unos segundos que vuelva a su color original
             //visualizer.resetearColores(graph);
         }
     }//GEN-LAST:event_coberturaSucursalBFSActionPerformed
@@ -291,7 +352,7 @@ public class Ventana2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         String respuesta = JOptionPane.showInputDialog(this, "Introduzca el nombre de la parada donde desea evaluar la cobertura");
         GraphNode nuevo = findNodeByName(respuesta);
-        if(nuevo == null){
+        if(nuevo.hasStore == false || nuevo == null){
             JOptionPane.showMessageDialog(null, "Por favor, ingresa una parada valida", "Error de valor", JOptionPane.ERROR_MESSAGE);
         }else{ //AQUI ES CON DFS
             visualizer.nodoSeleccionado(graph, respuesta);
@@ -321,6 +382,8 @@ public class Ventana2 extends javax.swing.JFrame {
                 GraphNode hacia = findNodeByName(respuesta2);
                 if(hacia == null){
                     hacia = graph.addNode(respuesta2); //se inserta el nombre de la nueva parada
+                    System.out.println("adding..."+hacia.name);
+                    visualizer.insertarNodo(respuesta2);
                 }
                 graph.addEdge(desde, hacia);
                 visualizer.ingresarConexion(respuesta1, respuesta2);
@@ -342,8 +405,9 @@ public class Ventana2 extends javax.swing.JFrame {
      */
     private void CoberturaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CoberturaTotalActionPerformed
         // TODO add your handling code here:
-        accessibleNodes = graph.getAccessibleNodes();
-        
+        //accessibleNodes = graph.getAccessibleNodes();
+        accessibleNodes = new LinkedList();
+        graph.recalcularAccessedNodes(radio, accessibleNodes);
         visualizer.markAccessibleNodes(graph, accessibleNodes);
         //visualizer.resetearColores(graph);
         LinkedList accessibleNodesCopy = new LinkedList();
@@ -365,13 +429,14 @@ public class Ventana2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         String respuesta = JOptionPane.showInputDialog(this, "Introduzca el nodo donde desea quitar la sucursual");
         visualizer.nodoDeseleccionado(graph, respuesta);
-        System.out.println(findNodeByName(respuesta).name);
+        //System.out.println(findNodeByName(respuesta).name);
         graph.deleteStore(findNodeByName(respuesta));
         GraphNode actual = findNodeByName(respuesta);
         actual.hasStore = false;
         nodesWithStore.eliminarTienda(findNodeByName(respuesta), nodesWithStore.head);
-        accessibleNodes = graph.getAccessibleNodes();
+        //accessibleNodes = graph.getAccessibleNodes();
         visualizer.resetearColores(graph);
+        graph.recalcularAccessedNodes(radio, accessibleNodes);
         //visualizer.markAccessibleNodes(graph, accessibleNodes);
     }//GEN-LAST:event_eliminarSucursalActionPerformed
     
@@ -405,6 +470,12 @@ public class Ventana2 extends javax.swing.JFrame {
     private javax.swing.JButton eliminarSucursal;
     private javax.swing.JButton establecerT;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,0 +1,120 @@
+@startuml
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Archivo {
+  + cargarGrafo(Graph): Graph
+  + loadGraphFromJson(File, Graph): Graph
+  - parseJson(String, Graph): Graph
+   nombre: String
+}
+class Graph {
+  - isVisited(LinkedList, GraphNode): boolean
+  + dfs(GraphNode): void
+  + getNonAccessible(LinkedList): LinkedList
+  + findNodeByName(String): GraphNode
+  + bfsConRadio(GraphNode, int): LinkedList
+  - dfsHelper(GraphNode, LinkedList): void
+  + dfsUnRadio(GraphNode, int): LinkedList
+  + bfs(GraphNode): void
+  + recalcularAccessedNodes(int, LinkedList): void
+  + addPedestrianCrossing(GraphNode, GraphNode): void
+  - isEmpty(LinkedList): boolean
+  + addNode(String): GraphNode
+  - dfsHelperConRadio(GraphNode, LinkedList, int, int, LinkedList): void
+  - isNodeInAccessibleNodes(LinkedList, GraphNode): boolean
+  + bfsConRadio(GraphNode, int, LinkedList): void
+  + addEdge(GraphNode, GraphNode): void
+  + dfsHelperUnRadio(GraphNode, LinkedList, int, int, LinkedList): void
+  + printGraph(): void
+  + getCountOfNewAccessibleNodes(LinkedList, LinkedList): int
+  + bfsConRadio2(GraphNode, int): void
+  + delete(Node, String): Node
+  + eliminarTodo(): void
+  + dfsConRadio(GraphNode, int, LinkedList): void
+  - getQueueSize(LinkedList): int
+  + deleteStore(GraphNode): void
+  + suggestNodesToVisit(int, LinkedList): LinkedList
+   - nodes: LinkedList
+   - nodeCount: int
+}
+class GraphNode {
+name: String
+connections: LinkedList
+pedestrianCrossings: LinkedList
+storesThatAccessThisNode: LinkedList
+hasStore: boolean
+  + printConnections(): void
+  + addConnection(GraphNode): void
+  + addPedestrianCrossing(GraphNode): void
+}
+class GraphVisualizer {
+  + eliminarTodo(): void
+  + nodoDeseleccionado(Graph, String): void
+  + tieneSucursal(GraphNode): void
+  + construirGraph(Graph): void
+  + visualizeGraph(): void
+  + markAccessibleNodes(Graph, LinkedList): void
+  + resetearColores(Graph): void
+  + ingresarConexion(String, String): void
+  + nodoSeleccionado(Graph, String): void
+  + resetColor(GraphNode): void
+  + nodosSugeridos(LinkedList, Graph): void
+- viewer: Viewer
+- graph: org.graphstream.graph.Graph
+}
+class LinkedList {
+head: Node
+  + eliminarTodos(): void
+  + eliminarTienda(GraphNode, Node): void
+  + imprimirLista(): void
+  + insertar(GraphNode): void
+  + get(int): GraphNode
+  + findNodeByName(String): GraphNode
+  + eliminar(Node, String): Node
+  + eliminarPrimero(): void
+}
+class Node{
+node: GraphNode
+next: Node
+}
+class Ventana1 {
+graph: Graph
+radio: int
+nombre: String
+  - initComponents(): void
+  - valorTActionPerformed(ActionEvent): void
+  + main(String[]): void
+  - ingresarJSONActionPerformed(ActionEvent): void
+  - siguienteVentanaActionPerformed(ActionEvent): void
+}
+class Ventana2 {
+-radio: int
+-graph: Graph
+-nombre: String
+visualizer: GraphVisualizer
+nodesWithStore: LinkedList
+accessibleNodes: LinkedList
+  - eliminarSucursalActionPerformed(ActionEvent): void
+  - agregarLineaActionPerformed(ActionEvent): void
+  - colocarSucursalActionPerformed(ActionEvent): void
+  - findNodeByName(String): GraphNode
+  - coberturaSucursalBFSActionPerformed(ActionEvent): void
+  - initComponents(): void
+  - cargarNuevaActionPerformed(ActionEvent): void
+  - establecerTActionPerformed(ActionEvent): void
+  - CoberturaTotalActionPerformed(ActionEvent): void
+  - coberturaSucursalDFSActionPerformed(ActionEvent): void
+}
+
+Graph           "1" *-[#595959,plain]-> "nodes\n1" LinkedList      
+GraphNode       "1" *-[#595959,plain]-> "connections, pedestrianCrossings, storesThatAccessThisNode\n1" LinkedList      
+LinkedList      "1" *-[#595959,plain]-> "head\n1" Node            
+Node            "1" *-[#595959,plain]-> "node\n1" GraphNode       
+Ventana1        "1" *-[#595959,plain]-> "graph\n1" Graph           
+Ventana2        "1" *-[#595959,plain]-> "graph\n1" Graph           
+Ventana2        "1" *-[#595959,plain]-> "visualizer\n1" GraphVisualizer 
+Ventana2        "1" *-[#595959,plain]-> "nodesWithStore, accessibleNodes\n1" LinkedList
+Ventana1 *-[#595959,plain]..> Archivo : usa en método privado
+@enduml

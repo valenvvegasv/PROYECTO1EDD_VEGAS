@@ -42,7 +42,13 @@ public class GraphVisualizer {
         
         while(current != null){
             org.graphstream.graph.Node graphNode = graph.addNode(current.node.name);
-            graphNode.setAttribute("ui.label", current.node.name);
+            String nombre;
+            if(current.node.name.length()>14){
+                nombre = current.node.name.substring(0, Math.min(current.node.name.length(), 14));
+            }else{
+                nombre = current.node.name;
+            }
+            graphNode.setAttribute("ui.label", nombre);
             //graphNode.setAttribute("ui.style", "text-alignment: under;");
             graphNode.setAttribute("ui.style", "size: 10px; fill-color: #B7E0F9;");
             graphNode.setAttribute("ui.label.size", 0.05);
@@ -141,7 +147,7 @@ public class GraphVisualizer {
                 Thread.sleep(3000);
                 Node current = accessibleNodes.head;
                 while(current!=null){
-                    System.out.println("HOLA: "+current.node.name);
+                    //System.out.println("HOLA: "+current.node.name);
                     graph.getNode(current.node.name).setAttribute("ui.style", "size: 15px; fill-color: purple;");
                     current = current.next;
                 }
@@ -206,7 +212,7 @@ public class GraphVisualizer {
                         //System.out.println("hola: "+current.node.name);
                         tieneSucursal(current.node);
                     }else{
-                        System.out.println("hola: "+current.node.name);
+                        //System.out.println("hola: "+current.node.name);
                         resetColor(current.node);
                     }
                     current = current.next;
@@ -249,5 +255,16 @@ public class GraphVisualizer {
     public void eliminarTodo(){
         graph.clear();
         viewer.close();
+    }
+    
+    public void insertarNodo(String name){
+        org.graphstream.graph.Node graphNode = graph.addNode(name);
+        if(name.length()>14){
+            name = name.substring(0, Math.min(name.length(), 14));
+        }
+        graphNode.setAttribute("ui.label", name);
+        graphNode.setAttribute("ui.style", "size: 10px; fill-color: #B7E0F9;");
+        graphNode.setAttribute("ui.label.size", 0.05);
+        graphNode.setAttribute("ui.label.align", "left");
     }
 }

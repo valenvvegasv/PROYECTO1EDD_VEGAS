@@ -52,9 +52,9 @@ public class GraphNode {
      * Imprime todas las conexiones de este nodo del grafo a la consola.
      */
     public void printConnections(){
-        System.out.print(name + " -> ");
+        //System.out.print(name + " -> ");
         connections.imprimirLista(); 
-         System.out.println();
+         //System.out.println();
     }
     
     /**

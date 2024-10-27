@@ -123,7 +123,7 @@ public class Graph {
             GraphNode current = queue.head.node;
             visited.insertar(current);
             queue.head = queue.head.next;
-            System.out.print(current.name + " ");
+            //System.out.print(current.name + " ");
             
             Node connection = current.connections.head;
             while(connection!=null){
@@ -154,7 +154,7 @@ public class Graph {
      */
     private void dfsHelper(GraphNode start, LinkedList visited){
         visited.insertar(start);
-        System.out.print(start.name + " ");
+        //System.out.print(start.name + " ");
         
         Node connection = start.connections.head;
         while(connection!=null){
@@ -232,7 +232,7 @@ public class Graph {
                         accessibleNodes.insertar(current); // Agregar a la lista accesible
                     }
                     // Agregar a nodos accesibles
-                    System.out.print(current.name + " ");
+                    //System.out.print(current.name + " ");
                 }
                 queue.head = queue.head.next; //quito el nodo de la cola
                 
@@ -290,7 +290,7 @@ public class Graph {
                 
                 if (!isNodeInAccessibleNodes(accessibleNodes, node)) {
                     accessibleNodes.insertar(node); // Agregar a la lista accesible
-                    System.out.println("Nodo insertado: "+node.name);
+                    //System.out.println("Nodo insertado: "+node.name);
                 }
                 //System.out.print(node.name + " ");
 
@@ -309,7 +309,7 @@ public class Graph {
                         visited.insertar(crossing.node); 
                         if (!isNodeInAccessibleNodes(accessibleNodes, crossing.node)) {
                             accessibleNodes.insertar(crossing.node); // Agregar a la lista accesible
-                            System.out.println("Nodo peatonal: "+node.name);
+                            //System.out.println("Nodo peatonal: "+node.name);
                         }
                     }
                     crossing = crossing.next;
@@ -354,7 +354,7 @@ public class Graph {
                 // Agregar el nodo accesible
                 if (!isNodeInAccessibleNodes(accessibleNodes, node)) {
                     accessibleNodes.insertar(node); // Agregar a la lista accesible
-                    System.out.println("Nodo insertado: " + node.name);
+                    //System.out.println("Nodo insertado: " + node.name);
                 }
 
                 // Recorrer conexiones
@@ -373,7 +373,7 @@ public class Graph {
                         visited.insertar(crossing.node);
                         if (!isNodeInAccessibleNodes(accessibleNodes, crossing.node)) {
                             accessibleNodes.insertar(crossing.node); // Agregar a la lista accesible
-                            System.out.println("Nodo peatonal: " + crossing.node.name);
+                            //System.out.println("Nodo peatonal: " + crossing.node.name);
                         }
                     }
                     crossing = crossing.next;
@@ -450,7 +450,7 @@ public class Graph {
             }
             if(bestNodeToVisit != null){
                 suggestedNodes.insertar(bestNodeToVisit);
-                System.out.println("Sugerencia: Visitar nodo " + bestNodeToVisit.name);
+                //System.out.println("Sugerencia: Visitar nodo " + bestNodeToVisit.name);
                 dfsConRadio(bestNodeToVisit, radio, accessibleNodes);
             }
         }while(unvisitedNodes.head != null);
@@ -513,7 +513,7 @@ public class Graph {
                 if (!isVisited(visited, current)) { //PROBLEMA
                     visited.insertar(current); // Marcarlo como visitado
                     // Agregar a nodos accesibles
-                    System.out.print(current.name + " ");
+                    //System.out.print(current.name + " ");
                 }
                 queue.head = queue.head.next; //quito el nodo de la cola
                 
@@ -546,7 +546,7 @@ public class Graph {
     * @param radio El radio máximo dentro del cual se buscan nodos alcanzables.
     * @return Una lista de nodos alcanzables desde el nodo de inicio.
     */
-    public LinkedList bfsConRadio(GraphNode start, int radio) {
+    public LinkedList bfsConRadio3(GraphNode start, int radio) {
         LinkedList queue = new LinkedList();
         LinkedList reachableNodes = new LinkedList(); // Lista para almacenar nodos alcanzables
 
@@ -561,7 +561,7 @@ public class Graph {
 
                 // Agregar el nodo actual a la lista de nodos alcanzables
                 reachableNodes.insertar(current);
-                System.out.print(current.name + " "); // Mostrar el nodo accesible (opcional)
+                //System.out.print(current.name + " "); // Mostrar el nodo accesible (opcional)
 
                 // Quitar el nodo de la cola
                 queue.head = queue.head.next;
@@ -604,7 +604,7 @@ public class Graph {
             while(current2!=null){ //hay alguna sucursal que tiene acceso a esta parada
                 //System.out.println("aqui estoy: "+current2.node.name);
                 if(nodosAccesibles.findNodeByName(current.node.name)==null){
-                     System.out.println("aqui estoy: "+current.node.name);
+                     //System.out.println("aqui estoy: "+current.node.name);
                      nodosAccesibles.insertar(current.node);
                 }
                 current2 = current2.next;
@@ -667,7 +667,7 @@ public class Graph {
         if (current != null) {
             previous.next = current.next; // Desvincular el nodo actual
         } else {
-            System.out.println("No se encontró el nodo: " + name);
+            //System.out.println("No se encontró el nodo: " + name);
         }
 
         return head; // Retorna la cabeza actualizada
