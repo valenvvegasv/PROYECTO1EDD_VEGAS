@@ -257,6 +257,11 @@ public class GraphVisualizer {
         viewer.close();
     }
     
+    /**
+     * inserta un nodo al grafo de GraphStream
+     * 
+     * @param name nombre del nodo a insertar
+     */
     public void insertarNodo(String name){
         org.graphstream.graph.Node graphNode = graph.addNode(name);
         if(name.length()>14){

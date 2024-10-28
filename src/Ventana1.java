@@ -142,6 +142,7 @@ public class Ventana1 extends javax.swing.JFrame {
     private void ingresarJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarJSONActionPerformed
         // TODO add your handling code here:
         Archivo archivo = new Archivo();
+        graph.eliminarTodo();
         graph = archivo.cargarGrafo(graph);
         nombre = archivo.getNombre();
         //System.out.println("Mi nombre es: "+nombre);
